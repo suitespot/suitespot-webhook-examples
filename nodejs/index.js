@@ -19,7 +19,15 @@ const server = http.createServer(async (req, res) => {
     const signature = hmac.digest('base64')
 
     res.writeHead(200, { 'Content-Type': 'application/json' })
-    res.write(JSON.stringify({ timestamp, v0, body, signature, signatureHeader }))
+    const result = {
+      timestamp,
+      v0,
+      body,
+      signature,
+      signatureHeader,
+      valid: signature === v0
+    }
+    res.write(JSON.stringify(result))
     res.end()
   } else {
     res.writeHead(404, { 'Content-Type': 'application/json' })
