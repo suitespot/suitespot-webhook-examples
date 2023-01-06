@@ -18,6 +18,8 @@ const server = http.createServer(async (req, res) => {
     hmac.update(`${timestamp}.${body}`)
     const signature = hmac.digest('base64')
 
+    const isValid = signature === v0
+
     res.writeHead(200, { 'Content-Type': 'application/json' })
     const result = {
       timestamp,
@@ -25,7 +27,7 @@ const server = http.createServer(async (req, res) => {
       body,
       signature,
       signatureHeader,
-      valid: signature === v0
+      isValid
     }
     res.write(JSON.stringify(result))
     res.end()
