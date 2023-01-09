@@ -10,6 +10,8 @@ if ($requestPath[0] !== 'webhook') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  // Use the request body string exactly as provided without and transformations for the signature check.
+  // If this data is transformed, decoded, encode in anyway it will fail the signature check.
   $body = file_get_contents('php://input');
 }
 
