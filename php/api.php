@@ -21,9 +21,9 @@ $data['REQUEST_HEADERS']['SIGNATURE_V0'] = $signature['v0'];
 $data['REQUEST_HEADERS']['SIGNATURE_V1'] = $signature['v1'];
 $data['REQUEST_HEADERS']['SIGNATURE_TIMESTAMP'] = $signature['t'];
 
-$signedBody = hash_hmac('sha256', $signature['t'].'.'.$body, $signingSecret, true);
+$bodySignature = hash_hmac('sha256', $signature['t'].'.'.$body, $signingSecret, true);
 
-if ($signature['v0'] === base64_encode($signedBody)) {
+if ($signature['v0'] === base64_encode($bodySignature)) {
   response(200, 'Webhook event received, Verification successful', $data);
 } else {
   response(200, 'Webhook event received, Verification unsuccessful', $data);
