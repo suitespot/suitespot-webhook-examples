@@ -13,10 +13,9 @@ This script is intended for sample purposes only and is not production ready.
 
 This script is to be used as a reference to validating webhook messages from the SuiteSpot system.
 
-1. Add a `.env` file with a value for the `SECRET`, this should be the secret provided for your company
+1. Get the `SECRET` shared with your from SuiteSpot
+2. Configure webhook events to be sent to `<YOUR_DOMAIN>/api/webhook`
+3. Start this server by executing `SECRET="<PUT_SECRET_HERE>" npm start` 
+3. Trigger a configured webhook event, this server will response with `isValid: true|false` depending on if the signature verification passes or not
 
-2. Configure webhook events to be sent to `<YOUR_DOMAIN>/api.php/webhooks`
-3. Start this server by executing `npm start` 
-3. Trigger a configured webhook event
-
-* Once the message is sent, this endpoint should respond with 200 and an object with a `isValid` field indicating whether or not the validation was successful or not *
+Once the signature if verified continue with any processing required and return a 200 status code to tell the webhook provider the message was accepted

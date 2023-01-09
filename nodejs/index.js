@@ -13,7 +13,7 @@ const server = http.createServer(async (req, res) => {
     console.log('body', body)
 
     // Verify signature
-    const secret = process.env.SECRET;
+    const secret = process.env.SECRET
     const hmac = createHmac('sha256', secret, { })
     hmac.update(`${timestamp}.${body}`)
     const signature = hmac.digest('base64')

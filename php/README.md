@@ -18,3 +18,5 @@ This script is to be used as a reference to validating webhook messages from the
 3. Trigger a configured webhook event
 
 * Once the message is sent, this endpoint should respond with either `Webhook event received, Verification successful` if the message validation was success OR `Webhook event received, Verification unsuccessful` if the message wasn't able to be validated. *
+
+Once the signature if verified continue with any processing required and return a 200 status code to tell the webhook provider the message was accepted
